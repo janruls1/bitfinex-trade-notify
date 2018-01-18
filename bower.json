@@ -1,0 +1,14 @@
+{
+  "name": "bitfinex-trade-notify",
+  "description": "A small tool to notify on bitfinex buy and sells",
+  "version": "0.0.0",
+  "homepage": "https://github.com/angular/angular-seed",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-websocket": "^2.0.0",
+    "angular-ui-notification": "^0.3.6",
+    "angular-audio": "^1.7.4"
+  }
+}

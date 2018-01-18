@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Trade notifier</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+<body ng-controller="mycontroller">
+<div class="container">
+  <div class="row">
+    <div class="col">
+      Buy(Vol@Avg) <br />
+      {{buy.vol}}@{{buy.avg}}@{{data.length}}
+    </div>
+    <div class="col">
+      Sell(Vol@Avg)<br />
+      {{sell.vol}}@{{sell.avg}}@{{data.length}}
+    </div>
+  </div>
+</div>
+ <table class="table table-responsive">
+   <thead>
+   <tr>
+     <th>Price</th>
+     <th>Amount</th>
+     <th>Type</th>
+     <th>Date</th>
+   </tr>
+   </thead>
+   <tbody>
+    <tr ng-repeat="row in data | orderBy: '-3'" ng-class="{'bg-danger': row[5] < 0, 'bg-success': row[5] > 0}">
+      <td>{{row[4]}}</td>
+      <td>{{row[5]}}</td>
+      <td><span ng-if="row[5] < 0">SELL</span><span ng-if="row[5] > 0">BUY</span></td>
+      <td>{{(row[3] * 1000) | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+    </tr>
+   </tbody>
+ </table>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+  <script src="bower_components/angular-websocket/dist/angular-websocket.js"></script>
+  <script src="bower_components/angular-audio/app/angular.audio.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
